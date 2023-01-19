@@ -1,0 +1,8 @@
+node_modules
+dist
+firmware
+base
+template
+.env
+*.log
+yarn*
