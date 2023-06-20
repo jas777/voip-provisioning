@@ -5,9 +5,10 @@ import { buildDeviceTemplate, DeviceTemplate } from "../templates/deviceTemplate
 const router = Router();
 
 const provisioningRoutes = (baseTemplates: Map<string, string>, deviceTemplates: Map<string, DeviceTemplate>) => {
-    router.get<{ device: string }>("/:device", (req, res) => {
-        if (deviceTemplates.has(req.params.device)) {
-            const userTemplate = deviceTemplates.get(req.params.device)!!;
+    router.get<{ device: string }>("/provisioning/:device", (req, res) => {
+        const device = req.params.device.replace(".cfg", "");
+        if (deviceTemplates.has(device)) {
+            const userTemplate = deviceTemplates.get(device)!!;
             const base = userTemplate?.base || "";
 
             if (base === "") {
@@ -28,7 +29,7 @@ const provisioningRoutes = (baseTemplates: Map<string, string>, deviceTemplates:
                 );
             });
         } else {
-            res.send(`Unknown device "${req.params.device}"`).status(404);
+            res.send(`Unknown device "${device}"`).status(404);
         }
     });
 

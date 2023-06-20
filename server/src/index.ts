@@ -8,14 +8,14 @@ import syslogParse from "./utils/syslogParse";
 import provisioningRoutes from "./routes/provisioning";
 import firmwareRoutes from "./routes/firmware";
 
-export const BASE_PATH = path.join(__dirname, "..", "base");
-export const TEMPLATE_PATH = path.join(__dirname, "..", "template");
-export const FIRMWARE_PATH = path.join(__dirname, "..", "firmware");
+export const BASE_PATH = path.join(__dirname, "..", "..", "base");
+export const TEMPLATE_PATH = path.join(__dirname, "..", "..", "template");
+export const FIRMWARE_PATH = path.join(__dirname, "..", "..", "firmware");
+export const CLIENT_PATH = path.join(__dirname, "..", "..", "client", "dist")
 
 export const logger = winston.createLogger({
     level: "info",
     format: winston.format.json(),
-    defaultMeta: { service: "user-service" },
     transports: [
         new winston.transports.File({ filename: "error.log", level: "error" }),
         new winston.transports.File({ filename: "combined.log" }),
@@ -41,6 +41,7 @@ const deviceTemplates = loadDeviceTemplates();
 
 app.use(provisioningRoutes(baseTemplates, deviceTemplates));
 app.use('/firmware', firmwareRoutes(deviceTemplates));
+app.use('/', express.static(CLIENT_PATH));
 
 app.post("*", (req, res) => {
     console.log("POST", req.url, req.body);
