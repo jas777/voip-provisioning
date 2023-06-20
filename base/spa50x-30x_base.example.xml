@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<flat-profile xmlns="http://www.sipura.net/xsd/SPA50x-30x-SIP" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sipura.net/xsd/SPA50x-30x-SIP http://www.sipura.net/xsd/SPA50x-30x-SIP/SPA50x-30x-SIP-7-4-7.xsd">
+
+  <!-- Configuration Profile -->
+
+  <Provision_Enable ua="na">Yes</Provision_Enable>
+  <Resync_On_Reset ua="na">Yes</Resync_On_Reset>
+  <Resync_Random_Delay ua="na">2</Resync_Random_Delay>
+  <Resync_At__HHmm_ ua="na"></Resync_At__HHmm_>
+  <Resync_Periodic ua="na">600</Resync_Periodic>
+  <Resync_Error_Retry_Delay ua="na">300</Resync_Error_Retry_Delay>
+  <Forced_Resync_Delay ua="na">14400</Forced_Resync_Delay>
+  <Resync_From_SIP ua="na">Yes</Resync_From_SIP>
+  <Resync_After_Upgrade_Attempt ua="na">Yes</Resync_After_Upgrade_Attempt>
+  <Resync_Trigger_1 ua="na"></Resync_Trigger_1>
+  <Resync_Trigger_2 ua="na"></Resync_Trigger_2>
+  <Resync_Fails_On_FNF ua="na">Yes</Resync_Fails_On_FNF>
+  <Profile_Rule ua="na">/spa$PSN.cfg</Profile_Rule>
+  <Profile_Rule_B ua="na"></Profile_Rule_B>
+  <Profile_Rule_C ua="na"></Profile_Rule_C>
+  <Profile_Rule_D ua="na"></Profile_Rule_D>
+  <DHCP_Option_To_Use ua="na">66,160,159,150</DHCP_Option_To_Use>
+  <Transport_Protocol ua="na">https</Transport_Protocol> <!-- options: none/tftp/http/https -->
+  <Log_Resync_Request_Msg ua="na">$PN $MAC -- Requesting resync $SCHEME://$SERVIP:$PORT$PATH</Log_Resync_Request_Msg>
+  <Log_Resync_Success_Msg ua="na">$PN $MAC -- Successful resync $SCHEME://$SERVIP:$PORT$PATH</Log_Resync_Success_Msg>
+  <Log_Resync_Failure_Msg ua="na">$PN $MAC -- Resync failed: $ERR</Log_Resync_Failure_Msg>
+  <Report_Rule ua="na"></Report_Rule>
+  <User_Configurable_Resync ua="na">Yes</User_Configurable_Resync>
+  <Syslog_Server ua="na">10.0.0.253:6968</Syslog_Server>
+  <DND_Serv ua="na">Yes</DND_Serv>
+</flat-profile>

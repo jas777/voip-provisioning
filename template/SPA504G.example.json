@@ -1,0 +1,32 @@
+{
+    "base": "spa50x-30x_base.xml",
+    "device": "spa504G",
+    "firmware": "spa50x-30x-7-6-2g.bin",
+    "replace": [
+        {
+            "key": "Profile_Rule",
+            "value": "/spa$PSN/$MAC",
+            "attributes": {
+                "ua": "r"
+            }
+        },
+        {
+            "key": "Transport_Protocol",
+            "value": "http",
+            "attributes": {
+                "ua": "r"
+            }
+        },
+        {
+            "key": "Profile_Rule_D",
+            "value": "TEST"
+        },
+        {
+            "key": "DND_Serv",
+            "value": "No",
+            "attributes": {
+                "ua": "r"
+            }
+        }
+    ]
+}
