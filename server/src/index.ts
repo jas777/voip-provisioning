@@ -7,6 +7,7 @@ import * as dgram from "dgram";
 import syslogParse from "./utils/syslogParse";
 import provisioningRoutes from "./routes/provisioning";
 import firmwareRoutes from "./routes/firmware";
+import tftp from "node-tftp";
 
 export const BASE_PATH = path.join(__dirname, "..", "..", "base");
 export const TEMPLATE_PATH = path.join(__dirname, "..", "..", "template");
@@ -23,6 +24,7 @@ export const logger = winston.createLogger({
     ],
 });
 
+// Syslog
 const socket = dgram.createSocket("udp4");
 
 socket.on("listening", () => {
@@ -31,9 +33,10 @@ socket.on("listening", () => {
 });
 
 socket.on("message", (msg, rinfo) => {
-    logger.info(syslogParse(msg.toString("utf8"), rinfo).msg);
+    logger.debug(syslogParse(msg.toString("utf8"), rinfo).msg);
 });
 
+// HTTP
 const app = express();
 
 const baseTemplates = loadBaseTemplates();
@@ -48,6 +51,26 @@ app.post("*", (req, res) => {
     res.send("OK!");
 });
 
+app.get("*", (req, res) => {
+    console.log("GET", req.url, req.body);
+    res.send("OK!");
+});
+
+// TFTP
+
+const fileServer = tftp.createServer({ port: 69, host: "0.0.0.0" });
+
+fileServer.on('request', (req, res) => {
+    logger.info(`TFTP - requested ${req.file} from ${req.stats.remoteAddress}`);
+    req.on ("error", function (error){
+		//Error from the request
+		console.error (error);
+	});
+});
+
+// Listening
+
 socket.bind(6968, "0.0.0.0");
 app.listen(6969);
+fileServer.listen();
 

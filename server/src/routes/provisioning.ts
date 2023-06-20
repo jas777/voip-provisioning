@@ -23,7 +23,7 @@ const provisioningRoutes = (baseTemplates: Map<string, string>, deviceTemplates:
                 return;
             }
 
-            buildDeviceTemplate(userTemplate, baseContent, (result) => {
+            buildDeviceTemplate(userTemplate, baseContent, new Map(), (result) => {
                 res.contentType("text/xml").send(
                     new xml2js.Builder().buildObject(result)
                 );
@@ -52,7 +52,7 @@ const provisioningRoutes = (baseTemplates: Map<string, string>, deviceTemplates:
                     return;
                 }
 
-                buildDeviceTemplate(userTemplate, baseContent, (result) => {
+                buildDeviceTemplate(userTemplate, baseContent, new Map(), (result) => {
                     res.contentType("text/xml").send(
                         new xml2js.Builder().buildObject(result)
                     );

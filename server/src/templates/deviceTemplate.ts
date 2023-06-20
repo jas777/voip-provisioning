@@ -44,6 +44,7 @@ export const loadDeviceTemplates = () => {
 export const buildDeviceTemplate = (
     userTemplate: DeviceTemplate,
     baseTemplate: string,
+    specialValues: Map<string, any>,
     callback: (result: any) => void
 ) => {
     xml2js.parseString(baseTemplate, (err, result) => {
